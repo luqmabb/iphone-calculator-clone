@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kalkulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="input">{{ value }}</div>
+            <div class="wrap">
+                <button class="lightgrey" @click="reset">C</button>
+                <button class="lightgrey" @click="erase">Del</button>
+                <button class="lightgrey" @click="persen">%</button>
+                <button class="orange" @click="bagi">/</button>
+                <button class="darkgrey" @click="tujuh">7</button>
+                <button class="darkgrey" @click="delapan">8</button>
+                <button class="darkgrey" @click="sembilan">9</button>
+                <button class="orange" @click="kali">x</button>
+                <button class="darkgrey" @click="empat">4</button>
+                <button class="darkgrey" @click="lima">5</button>
+                <button class="darkgrey" @click="enam">6</button>
+                <button class="orange" @click="kurang">-</button>
+                <button class="darkgrey" @click="satu">1</button>
+                <button class="darkgrey" @click="dua">2</button>
+                <button class="darkgrey" @click="tiga">3</button>
+                <button class="orange" @click="tambah">+</button>
+                <button class="nol" @click="nol">0</button>
+                <button class="darkgrey" @click="titik">.</button>
+                <button class="orange" @click="samaDengan">=</button>
+            </div>
+    </div>
+
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                return {
+                    value: '',
+                }
+            },
+            methods: {
+                tambah() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else if(this.value == ''){
+                        this.value += ''
+                    }else{
+                        this.value += '+'
+                    }
+                },
+                kurang() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else if(this.value == '') {
+                        this.value += ''
+                    }else{
+                        this.value += '-'
+                    }
+                },
+                kali() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else if(this.value == '') {
+                        this.value += ''
+                    }else{
+                        this.value += 'x'
+                    }
+                },
+                bagi() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else if(this.value == '') {
+                        this.value += ''
+                    }else{
+                        this.value += '/'
+                    }
+                },
+                satu() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '1'
+                    }
+                },
+                dua() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '2'
+                    }
+                },
+                tiga() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '3'
+                    }
+                },
+                empat() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '4'
+                    }
+                },
+                lima() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '5'
+                    }
+                },
+                enam() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '6'
+                    }
+                },
+                tujuh() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '7'
+                    }
+                },
+                delapan() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '8'
+                    }
+                },
+                sembilan() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '9'
+                    }
+                },
+                nol() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '0'
+                    }
+                },
+                persen() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '%'
+                    }
+                },
+                titik() {
+                    if(this.value.length >= 12) {
+                        this.value += ''
+                    }else{
+                        this.value += '.'
+                    }
+                },  
+                samaDengan() {
+                    let newValue = this.value
+                    let value1
+                    let value2
+
+                    if(newValue[newValue.length - 1] == '+' || newValue[newValue.length - 1] == '-'|| newValue[newValue.length - 1] == 'x' || newValue[newValue.length - 1] == '/' ) {
+                        newValue = newValue.slice(0, newValue.length - 1)
+                    }
+
+                    //tambah
+                    for (let i = 0; i < newValue.length; i++) {
+                         if (newValue[i] == '+') {
+                            if(newValue[i-1] == '%'){
+                                value1 = Number(newValue.slice(0, i-1)) / 100 
+                            }else{
+                                value1 = Number(newValue.slice(0, i))
+                            }
+                        }
+                    }
+                    for (let i = newValue.length - 1; i >= 0; i--) {
+                        if (newValue[i] == '+') {
+                            if(newValue[newValue.length-1] == '%') {
+                                value2 = Number(newValue.slice(i + 1, newValue.length - 1)) /100
+                                let hasil = value1 + value2
+                                let tes1 = value2 * value1
+                                this.value = value1 + tes1
+                                    this.value = String(this.value)
+                                        if(this.value.length > 12) {
+                                            this.value = Number(this.value.slice(0, 12))
+                                        }else{
+                                            this.value = Number(this.value)
+                                        }
+                            }else{
+                                value2 = Number(newValue.slice(i + 1, newValue.length + 1))
+                                let hasil = value1 + value2
+                                this.value = hasil
+                                this.value = String(this.value)
+                                    if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }
+                        }
+                    }
+
+
+                    //kurang
+                    for (let i = 0; i < newValue.length; i++) {
+                        if (newValue[i] == '-') {
+                            if(newValue[i-1] == '%'){
+                                value1 = Number(newValue.slice(0, i-1)) / 100 
+                            }else{
+                                value1 = Number(newValue.slice(0, i))
+                            }
+                        }
+                    }
+
+                    for (let i = newValue.length - 1; i >= 0; i--) {
+                        if (newValue[i] == '-') {
+                            if(newValue[newValue.length-1] == '%') {
+                                value2 = Number(newValue.slice(i + 1, newValue.length - 1)) /100
+                                let tes1 = value2 * value1
+                                let hasil = value1 - tes1
+                                this.value = hasil
+                                if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }else{
+                                value2 = Number(newValue.slice(i + 1, newValue.length + 1))
+                                let hasil = value1 - value2
+                                this.value = hasil
+                                if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }
+                        }
+                    }
+
+                    //kali
+                    for (let i = 0; i < newValue.length; i++) {
+                        if (newValue[i] == 'x') {
+                            if(newValue[i-1] == '%'){
+                                value1 = Number(newValue.slice(0, i-1)) / 100 
+                            }else{
+                                value1 = Number(newValue.slice(0, i))
+                            }
+                        }
+                    }
+                    for (let i = newValue.length - 1; i >= 0; i--) {
+                        if (newValue[i] == 'x') {
+                            if(newValue[newValue.length-1] == '%') {
+                                value2 = Number(newValue.slice(i + 1, newValue.length - 1)) /100
+                                let hasil = value1 * value2
+                                this.value = hasil
+                                this.value = String(this.value)
+                                    if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }else{
+                                value2 = Number(newValue.slice(i + 1, newValue.length + 1))
+                                let hasil = value1 * value2
+                                this.value = hasil
+                                this.value = String(this.value)
+                                    if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }
+                        }
+                    }
+
+                    //bagi
+                    for (let i = 0; i < newValue.length; i++) {
+                        if (newValue[i] == '/') {
+                            if(newValue[i-1] == '%'){
+                                value1 = Number(newValue.slice(0, i-1)) / 100 
+                            }else{
+                                value1 = Number(newValue.slice(0, i))
+                            }
+                        }
+                    }
+                    for (let i = newValue.length - 1; i >= 0; i--) {
+                        if (newValue[i] == '/') {
+                            if(newValue[newValue.length-1] == '%') {
+                                value2 = Number(newValue.slice(i + 1, newValue.length - 1)) /100
+                                let hasil = value1 / value2
+                                this.value = hasil
+                                if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }else{
+                                value2 = Number(newValue.slice(i + 1, newValue.length + 1))
+                                let hasil = value1 / value2
+                                this.value = hasil
+                                if(this.value.length > 12) {
+                                        this.value = Number(this.value.slice(0, 12))
+                                    }else{
+                                        this.value = Number(this.value)
+                                    }
+                            }
+                        }
+                    }
+                    
+                },
+                reset() {
+                    this.value = ''
+                },
+                erase() {
+                    this.value = String(this.value)
+                    this.value = this.value.slice(0, this.value.length - 1)
+                },
+            },        
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
